@@ -1,4 +1,26 @@
 import numpy as np
+def norma(matrix):
+    max = -1
+    for i in range(len(matrix)):
+        sum1 = 0
+        sum2 = 0
+        for j in range(len(matrix)):
+            sum1 += matrix[i][j]
+            sum2 += matrix[j][i]
+        if sum1 > max:
+            max = sum1
+        if sum2 > max:
+            max = sum2
+    return max
+
+def normaVec(vec):
+    max = -1
+    for num in vec:
+        if num > max:
+            max = num
+    return max
+
+
 Nc = 2
 Ng = 10
 A = np.array([[Nc+10 , Ng    , 1    ],
@@ -11,11 +33,6 @@ C = np.array([[Ng   ],
 
 A = np.array([[20,+4,-8],[-3,15,5],[6,3,-18]])
 C = [1,-2,3]
-
-# проверка главной диагонали на нули
-for i in range(len(A)):
-    if (A[i][i] == 0):
-        print("error a[i][i] musnt be 0")
 
 def compare(curr, prev):
     eps = 1e-4
@@ -35,14 +52,25 @@ for i in range(len(A)):
     for i in range(len(A)):
         beta_matrix[i] = C[i] / A[i][i]
 
-print("\n\nМетод простой итерации:");
+
+# проверка главной диагонали на нули
+for i in range(len(A)):
+    if (A[i][i] == 0):
+        print("error a[i][i] musnt be 0")
+# Проверка на норму
+if norma(alpha_matrix) >= 1 or normaVec(beta_matrix) >= 1:
+    print("error norma mast be < 1")
+
+
+print("\n\nМетод простой итерации:")
+# https://www.youtube.com/watch?v=4s9GxRY_DNM
 eps = True
 iter = 1
 x_matrix = np.copy(beta_matrix)
 while(eps):
     x_p = np.copy(x_matrix)
     x_matrix = beta_matrix + np.dot(alpha_matrix, x_p)
-    eps = compare(x_matrix, x_p)
+    eps = compare(x_matrix, св )
     print("iter: ", iter, " ", x_matrix.transpose()[0])
     iter += 1
 print("Решение методом простой итерации")

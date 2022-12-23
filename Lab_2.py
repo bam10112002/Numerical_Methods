@@ -25,21 +25,21 @@ A2 = [[b(1), c(1),   0,     0,    0,     0,       0,       0,       0,      0],
       [0,       0,    0,    0,    0,     0,    a(8),    b(8),    c(8),      0],
       [0,       0,    0,    0,    0,     0,       0,    a(9),    b(9),   c(9)],
       [0,       0,    0,    0,    0,     0,       0,       0,    a(10),  b(10)]]
-
-def generate(size):
-    matrix = np.array(np.array(5))
-    # for i in range(size):
-    #     matrix.append([0]*size)
-    # # matrix = [[0] * size] * size
-    matrix[0][0] = b(1)
-    matrix[0][1] = c(1)
-    for i in range(1, size-1):
-        matrix[i][i-1] = a(i+1)
-        matrix[i][i]   = b(i+1)
-        matrix[i][i+1] = c(i+1)
-    matrix[size-1][size-2] = a(size)
-    matrix[size-1][size-1] = b(size)
-    return matrix
+#
+# def generate(size):
+#     matrix = np.array(np.array(5))
+#     # for i in range(size):
+#     #     matrix.append([0]*size)
+#     # # matrix = [[0] * size] * size
+#     matrix[0][0] = b(1)
+#     matrix[0][1] = c(1)
+#     for i in range(1, size-1):
+#         matrix[i][i-1] = a(i+1)
+#         matrix[i][i]   = b(i+1)
+#         matrix[i][i+1] = c(i+1)
+#     matrix[size-1][size-2] = a(size)
+#     matrix[size-1][size-1] = b(size)
+#     return matrix
 
 y = [b(1)]
 alpha = [-c(1)/y[-1]]
@@ -53,15 +53,17 @@ for i in range(2, len(A)):
 y.append(b(len(A)) + a(len(A)) * alpha[-1])
 betta.append((d(len(A)) - a(len(A))*betta[-1])/y[-1])
 
-# print(alpha)
-# print(betta)
+print("A = {}".format(np.array(A)))
+print("alpha:", alpha)
+print("betta:", betta)
 
 x = [betta[-1]]
 for i in range(len(A)-1, 0, -1):
     x.append(alpha[i-1] * x[-1] + betta[i-1])
+print("x= ", x)
 
 def myPrint(matrix):
     for row in matrix:
         print(row)
 
-print(generate(5))
+# print(generate(5))
