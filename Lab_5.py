@@ -44,13 +44,16 @@ def gx(x):
 a = -4
 b = -7
 q = -10000
+x0 = 0
 for x in np.linspace(a, b, 1000):
-    q = max(gx(x), q)
+    if q > gx(x):
+        x0 = x
+        q = max(gx(x), q)
 
-x0 = (a - b)/2
 x = [x0, g(x0)]
 if gx(x0) >= 1 and gx(x0) * math.fabs(x[-1] - x[-2])/(1-gx(x0)) >= 1:
     print("errr gx(x) > 1")
+
 while True:
     x.append(g(x[-1]))
     if math.fabs(2*x[-2] - x[-1] - x[-3]) == 0:

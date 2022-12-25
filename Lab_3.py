@@ -41,6 +41,12 @@ def compare(curr, prev):
             return True
         return False
 
+
+# проверка главной диагонали на нули
+for i in range(len(A)):
+    if (A[i][i] == 0):
+        print("error a[i][i] musnt be 0")
+
 # Выразим неизвесные
 alpha_matrix = np.zeros((len(A), len(A)))
 beta_matrix = np.zeros((len(A), 1))
@@ -53,12 +59,8 @@ for i in range(len(A)):
         beta_matrix[i] = C[i] / A[i][i]
 
 
-# проверка главной диагонали на нули
-for i in range(len(A)):
-    if (A[i][i] == 0):
-        print("error a[i][i] musnt be 0")
 # Проверка на норму
-if norma(alpha_matrix) >= 1 or normaVec(beta_matrix) >= 1:
+if norma(alpha_matrix) >= 1:
     print("error norma mast be < 1")
 
 
@@ -70,8 +72,14 @@ x_matrix = np.copy(beta_matrix)
 while(eps):
     x_p = np.copy(x_matrix)
     x_matrix = beta_matrix + np.dot(alpha_matrix, x_p)
-    eps = compare(x_matrix, св )
-    print("iter: ", iter, " ", x_matrix.transpose()[0])
+    e = (np.linalg.norm(alpha_matrix, np.inf)**iter/(1-np.linalg.norm(alpha_matrix, np.inf))) * \
+            np.linalg.norm(beta_matrix, np.inf)
+    if np.linalg.norm(alpha_matrix) >= 1:
+        e = (np.linalg.norm(alpha_matrix, np.inf)**iter/(1-np.linalg.norm(alpha_matrix, np.inf))) * np.linalg.norm(x_matrix - x_p)
+    if e < 1e-5:
+        break
+
+    print("iter: ", iter, " x = ", x_matrix.transpose()[0], "e = ", e)
     iter += 1
 print("Решение методом простой итерации")
 print(x_matrix.transpose()[0])

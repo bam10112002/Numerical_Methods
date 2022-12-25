@@ -7,8 +7,8 @@ Nc = 2
 x_list = [-2, -1, 0, 1, 2]
 y_list = [Nc, Ng, -1, Nc, Ng]
 
-x_list = [0, 1, 2, 3]
-y_list = [-5, -6, 3, 28]
+# x_list = [0, 1, 2, 3]
+# y_list = [-5, -6, 3, 28]
 
 
 def phi1(x):
@@ -43,12 +43,12 @@ def check():
         else:
             print("Some error in x = ", x_list[i], "\ty = ", y_list[i])
 
-print("{} * phi1(x) + {} * phi2(x) + {} * phi3(x) + {} * phi4(x)".format(y_list[0],y_list[1], y_list[2], y_list[3]))
-print("phi1 = (x- {})*(x- {})*(x- {})/{}".format(x_list[1],x_list[2],x_list[3], ((x_list[0] - x_list[1]) * (x_list[0] - x_list[2]) * (x_list[0] - x_list[3]))))
-print("phi2 = (x- {})*(x- {})*(x- {})/{}".format(x_list[0],x_list[2],x_list[3], ((x_list[1] - x_list[0]) * (x_list[1] - x_list[2]) * (x_list[1] - x_list[3]))))
-print("phi3 = (x- {})*(x- {})*(x- {})/{}".format(x_list[0],x_list[1],x_list[3], ((x_list[2] - x_list[0]) * (x_list[2] - x_list[1]) * (x_list[2] - x_list[3]))))
-print("phi4 = (x- {})*(x- {})*(x- {})/{}".format(x_list[0],x_list[2],x_list[1], ((x_list[3] - x_list[0]) * (x_list[3] - x_list[1]) * (x_list[3] - x_list[2]))))
-print("Интерполяционный многочлен Лагранжа: ")
+# print("{} * phi1(x) + {} * phi2(x) + {} * phi3(x) + {} * phi4(x)".format(y_list[0],y_list[1], y_list[2], y_list[3]))
+# print("phi1 = (x- {})*(x- {})*(x- {})/{}".format(x_list[1],x_list[2],x_list[3], ((x_list[0] - x_list[1]) * (x_list[0] - x_list[2]) * (x_list[0] - x_list[3]))))
+# print("phi2 = (x- {})*(x- {})*(x- {})/{}".format(x_list[0],x_list[2],x_list[3], ((x_list[1] - x_list[0]) * (x_list[1] - x_list[2]) * (x_list[1] - x_list[3]))))
+# print("phi3 = (x- {})*(x- {})*(x- {})/{}".format(x_list[0],x_list[1],x_list[3], ((x_list[2] - x_list[0]) * (x_list[2] - x_list[1]) * (x_list[2] - x_list[3]))))
+# print("phi4 = (x- {})*(x- {})*(x- {})/{}".format(x_list[0],x_list[2],x_list[1], ((x_list[3] - x_list[0]) * (x_list[3] - x_list[1]) * (x_list[3] - x_list[2]))))
+# print("Интерполяционный многочлен Лагранжа: ")
 check()
 
 
@@ -90,9 +90,9 @@ print("N = {}+{} * (x-{}) + {}*(x-{})*(x-{}) + {}*(x-{})*(x-{})*(x-{})".format(d
                                                                                 x_list[0],  x_list[1], x_list[2]))
 checkN()
 
-x_sp = np.linspace(0, 3, 100)
+x_sp = np.linspace(-2, 2, 100)
 y_sp = L(x_sp)
-x_sp2 = np.linspace(0, 3, 100)
+x_sp2 = np.linspace(-2, 2, 100)
 y_sp2 = newton(x_sp)
 fig, ax = plt.subplots()
 ax.plot(x_sp, y_sp)

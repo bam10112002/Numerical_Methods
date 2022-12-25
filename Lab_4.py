@@ -17,7 +17,7 @@ a_list = [A_copy]
 V = np.eye(len(A_copy), dtype=float)
 iter = 0
 prevErr = 10000
-while MyMax(a_list[-1]) > 1e-4:
+while MyMax(a_list[-1]) > 1e-3:
     max = -1
     k = -1
     m = -1
@@ -36,8 +36,9 @@ while MyMax(a_list[-1]) > 1e-4:
     V = np.matmul(V, H)
     a_list.append(np.copy((linalg.inv(H).dot(a_list[-1])).dot(H)))
     iter += 1
-    if (prevErr - MyMax(a_list[-1]) == 0):
-        break
+    # if (prevErr - MyMax(a_list[-1]) == 0):
+    #     break
+    print(iter)
     prevErr = MyMax(a_list[-1])
 
 lam = []
